@@ -1,5 +1,5 @@
 {
-    "name": "sxqredux",
+    "name": "sxqmobx",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -24,7 +24,6 @@
         "react-html-parser": "^2.0.2",
         "react-markdown": "^3.2.2",
         "react-router-dom": "^4.2.2",
-        "react-router-redux": "^4.0.8",
         "sw-precache-webpack-plugin": "0.11.4",
         "whatwg-fetch": "2.0.3"
     },

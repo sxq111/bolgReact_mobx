@@ -45,7 +45,7 @@ export default class extends Component {
                 {
                     this.state.articleData.map(data => {
                         return (
-                            <div className={styles.al} style={{ width: '31%', height: '250px', padding: 5, float: 'left' }} >
+                            <div key = {data.menTime+data.title} className={styles.al} style={{ width: '31%', height: '250px', padding: 5, float: 'left' }} >
                                 <Card
                                     hoverable={true}
                                     style={{ width: '100%', height: '100%' }}

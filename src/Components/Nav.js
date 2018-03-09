@@ -3,15 +3,19 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 @withRouter
 export default class extends Component {
+    componentDidMount(){
+        this.props.onChangeTag(Object.keys(this.props.fileMap)[0]);
+    }
     render() {
         return (
             <Menu
+                defaultSelectedKeys = {Object.keys(this.props.fileMap)[0]}
                 style={{ width: 120, height: '100%', float: 'left' }}
                 mode="inline">
                 {
                     Object.keys(this.props.fileMap||[]).map(tag => {
                         return (
-                            <Menu.Item key={tag}>
+                            <Menu.Item  key={tag}>
                                 <div
                                     onClick={() => {
                                         this.props.onChangeTag(tag);

@@ -18,12 +18,11 @@ class App extends Component {
 	}
 	render() {
 		return (
-				<BrowserRouter>
-					<div className={stylesLess.body}>
+			<BrowserRouter>
+				<div className={stylesLess.body}>
 						<Nav fileMap={FileMap}
 							onChangeTag={
 								(tag) => {
-									// console.log('clktag');
 									this.setState({ currentTag: tag });
 								}
 							} />
@@ -34,13 +33,13 @@ class App extends Component {
 								<Route path='/:tag/:name' component={Article} />
 								<Route path='/'
 									render={(props) => {
-										return (<ArticleList tag  = {this.state.currentTag}/>)
+										return (<ArticleList tag={this.state.currentTag} />)
 									}}
 								/>
 							</Switch>
 						</div>
 					</div>
-				</BrowserRouter>
+			</BrowserRouter>
 		);
 	}
 }
