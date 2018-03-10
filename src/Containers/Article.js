@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import FileMap from '../articlesHelper/fileMap.json';
 import Article from '../Components/ArticleBody';
-
 const Gitment = require('gitment');
 require('gitment/style/default.css');
-
 export default class extends Component {
     constructor(props) {
         super(props);

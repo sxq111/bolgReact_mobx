@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import RMD from 'react-markdown';
-import Code from'./mdBlockRenderers/code';
-import P from'./mdBlockRenderers/p';
+import Code from './mdBlockRenderers/code';
+import P from './mdBlockRenderers/p';
 import Head from './mdBlockRenderers/heading';
 import List from './mdBlockRenderers/list';
 import Table from './mdBlockRenderers/table';

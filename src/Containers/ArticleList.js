@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import FileMap from '../articlesHelper/fileMap.json';
 import { Card, Tag } from 'antd';
 import styles from './ArticleList.css';
 import { Link } from 'react-router-dom';
@@ -24,7 +23,7 @@ export default class extends Component {
     }
     getArticles(p1) {
         let arr= [];        
-        Object.keys(FileMap[p1.tag]).map(articleName => {
+        Object.keys(this.props.fileMap[p1.tag]).map(articleName => {
             let articleHelper = require('../articles/' + p1.tag + '/' + articleName);
             let basicInfo = articleHelper.getBasicInfo();
             let time = new Date(basicInfo.time);
@@ -47,7 +46,7 @@ export default class extends Component {
                         return (
                             <div key = {data.menTime+data.title} className={styles.al} style={{ width: '31%', height: '250px', padding: 5, float: 'left' }} >
                                 <Card
-                                    hoverable={true}
+                                    // hoverable={true}
                                     style={{ width: '100%', height: '100%' }}
                                 >
                                     <div style={{ width: '100%', height: 150 }}>

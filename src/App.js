@@ -5,21 +5,23 @@ import { Menu } from 'antd';
 import Nav from './Components/Nav';
 import Article from './Containers/Article';
 import ArticleList from './Containers/ArticleList';
-import FileMap from './articlesHelper/fileMap.json';
 import { observer } from 'mobx-react'
 
 const SubMenu = Menu.SubMenu;
 
-// @Observer()
 @observer
 class App extends Component {
 	constructor(props) {
 		super(props);
 	}
 	async  componentDidMount() {
-		// console.log(this.props.store.changeTag)
+		// setInterval(()=>{
+		// 	console.log(this.props.store.FileMapCount);
+		// 	console.log(this.props.store.FileMapCount2);//不被computed修饰的有性能损失
+		// },1000);
 	}
 	render() {
+		const {store} = this.props;
 		return (
 			<BrowserRouter>
 				<div className={stylesLess.body}>
@@ -27,7 +29,8 @@ class App extends Component {
 						this.props.store.changeTag(props.match.params.tag);
 						return null;
 					}} />
-					<Nav fileMap={FileMap}
+					<Nav fileMap={this.props.store.FileMapCount}
+						displayMode = {this.props.store.displayMode}
 						tag={this.props.store.currentTag}
 						onChangeTag={
 							(tag) => {
@@ -39,9 +42,10 @@ class App extends Component {
 						<Switch>
 							{/* 文章显示区 */}
 							<Route path='/:tag/:name' component={Article} />
+							<Route path='/timeLine' component={Article} />
 							<Route path='/'
 								render={(props) => {
-									return (<ArticleList tag={this.props.store.currentTag} />)
+									return (<ArticleList fileMap = {this.props.store.FileMap} tag={this.props.store.currentTag} />)
 								}}
 							/>
 						</Switch>
