@@ -9,7 +9,7 @@ export default class extends Component {
     render() {
         return (
             <Menu
-                defaultSelectedKeys = {Object.keys(this.props.fileMap)[0]}
+                selectedKeys = {[this.props.tag]}
                 style={{ width: 120, height: '100%', float: 'left' }}
                 mode="inline">
                 {
