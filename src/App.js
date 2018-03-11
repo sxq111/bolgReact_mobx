@@ -5,7 +5,8 @@ import { Menu } from 'antd';
 import Nav from './Components/Nav';
 import Article from './Containers/Article';
 import ArticleList from './Containers/ArticleList';
-import { observer } from 'mobx-react'
+import { observer } from 'mobx-react';
+import Timeline from './Containers/TimeLine';
 
 const SubMenu = Menu.SubMenu;
 
@@ -21,7 +22,7 @@ class App extends Component {
 		// },1000);
 	}
 	render() {
-		const {store} = this.props;
+		const { store } = this.props;
 		return (
 			<BrowserRouter>
 				<div className={stylesLess.body}>
@@ -30,7 +31,7 @@ class App extends Component {
 						return null;
 					}} />
 					<Nav fileMap={this.props.store.FileMapCount}
-						displayMode = {this.props.store.displayMode}
+						displayMode={this.props.store.displayMode}
 						tag={this.props.store.currentTag}
 						onChangeTag={
 							(tag) => {
@@ -42,10 +43,17 @@ class App extends Component {
 						<Switch>
 							{/* 文章显示区 */}
 							<Route path='/:tag/:name' component={Article} />
-							<Route path='/timeLine' component={Article} />
+							<Route path='/timeLine' render={(props) => {
+								return (
+									<Timeline
+										timeLineData = {store.TimeLineFile}
+										onNormal = {store.triggerDisplayModeNormal}
+										onTimeline = {store.triggerDisplayModeTimekline}
+									/>)
+							}} />
 							<Route path='/'
 								render={(props) => {
-									return (<ArticleList fileMap = {this.props.store.FileMap} tag={this.props.store.currentTag} />)
+									return (<ArticleList fileMap={this.props.store.FileMap} tag={this.props.store.currentTag} />)
 								}}
 							/>
 						</Switch>
