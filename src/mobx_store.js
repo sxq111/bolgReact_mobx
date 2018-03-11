@@ -2,7 +2,7 @@ import { observable, action, computed, useStrict } from 'mobx';
 import FileMap from './articlesHelper/fileMap.json';
 // useStrict(true);
 let allPaths = getAllpath(FileMap);
-console.log(import(allPaths[0]+'/index.js').then(rst=>{console.log(rst)}));
+// console.log(import(allPaths[0]+'/index.js').then(rst=>{console.log(rst)}));
 const FILE_MAP = observable(FileMap);
 class Store {
     @observable currentTag = null;
@@ -51,7 +51,7 @@ function getAllpath(fmap) {
             getPath(obj[key], currentpath + '/' + key);
         });
     }
-    getPath(fmap,'SRC/articles');
+    getPath(fmap,'./articles');
     return paths;
 }
 
