@@ -10,16 +10,20 @@ import Timeline from './Containers/TimeLine';
 
 const SubMenu = Menu.SubMenu;
 
+
+
+
 @observer
+// @makeDecotratorClass('修饰类')
 class App extends Component {
 	constructor(props) {
 		super(props);
 	}
+	@makeDecotrator('修饰类方法属性')
+	test() {}
+	// @makeDecotrator('修饰类变量属性')
+	xxx = 'x发的我xx'
 	async  componentDidMount() {
-		// setInterval(()=>{
-		// 	console.log(this.props.store.FileMapCount);
-		// 	console.log(this.props.store.FileMapCount2);//不被computed修饰的有性能损失
-		// },1000);
 	}
 	render() {
 		const { store } = this.props;
@@ -46,9 +50,9 @@ class App extends Component {
 							<Route path='/timeLine' render={(props) => {
 								return (
 									<Timeline
-										timeLineData = {store.TimeLineFile}
-										onNormal = {store.triggerDisplayModeNormal}
-										onTimeline = {store.triggerDisplayModeTimekline}
+										timeLineData={store.TimeLineFile}
+										onNormal={store.triggerDisplayModeNormal}
+										onTimeline={store.triggerDisplayModeTimekline}
 									/>)
 							}} />
 							<Route path='/'
@@ -65,3 +69,29 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+function makeDecotrator(id) {//对于属性来说，装饰器应该返回属性描述符
+
+	return  (target, prop_name, descObj)=> {
+		console.log(id,target);//这里使用settimeout的原因是 装饰器在编译时执行，那时候App类还没有被建立，所以不加异步，App会是undefined
+		setTimeout(()=>{console.log(App.prototype === target)},0);//经过尝试，这里的target就是App.protptype
+	}
+}
+function makeDecotratorClass(id) {//对于类来说，装饰器返回的就应该是一个类
+	return function testDecorater(t, p2, p3) {//这样才会变量提升
+		console.log(id,t, p2, p3);
+		return class extends Component {
+			render(){
+				return(<div>aaaa</div>)
+			}
+		}; 
+	}
+}
+let testApp = new App();
+testApp.test();
+// let a = 'sss';
+// @makeDecotrator('变量')
+
+// console.log(new App());

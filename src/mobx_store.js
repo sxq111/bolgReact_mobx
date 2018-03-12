@@ -55,5 +55,5 @@ function getAllpath(fmap) {
     return paths;
 }
 
-
+// console.log(new Store());
 export default new Store();
