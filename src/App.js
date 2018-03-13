@@ -7,23 +7,20 @@ import Article from './Containers/Article';
 import ArticleList from './Containers/ArticleList';
 import { observer } from 'mobx-react';
 import Timeline from './Containers/TimeLine';
+import {SimpleAutoBind} from 'SRC/simpleAutoBind';
 
 const SubMenu = Menu.SubMenu;
 
-
-
-
 @observer
-// @makeDecotratorClass('修饰类')
 class App extends Component {
 	constructor(props) {
 		super(props);
 	}
-	@makeDecotrator('修饰类方法属性')
-	test() {}
-	// @makeDecotrator('修饰类变量属性')
-	xxx = 'x发的我xx'
 	async  componentDidMount() {
+	}
+	@SimpleAutoBind
+	changeTag(tag){
+		this.props.store.changeTag(tag);
 	}
 	render() {
 		const { store } = this.props;
@@ -37,11 +34,7 @@ class App extends Component {
 					<Nav fileMap={this.props.store.FileMapCount}
 						displayMode={this.props.store.displayMode}
 						tag={this.props.store.currentTag}
-						onChangeTag={
-							(tag) => {
-								this.props.store.changeTag(tag);
-							}
-						} />
+						onChangeTag={this.changeTag} />
 					{/* 文章列表区 */}
 					<div style={{ height: '100%', width: 'auto', overflow: 'scroll', background: '#fff', overflowX: 'hidden' }}>
 						<Switch>
@@ -72,25 +65,25 @@ export default App;
 
 
 
-function makeDecotrator(id) {//对于属性来说，装饰器应该返回属性描述符
+// function makeDecotrator(id) {//对于属性来说，装饰器应该返回属性描述符（不反回直接修改也是可疑以的，因为他是对象）
 
-	return  (target, prop_name, descObj)=> {
-		console.log(id,target);//这里使用settimeout的原因是 装饰器在编译时执行，那时候App类还没有被建立，所以不加异步，App会是undefined
-		setTimeout(()=>{console.log(App.prototype === target)},0);//经过尝试，这里的target就是App.protptype
-	}
-}
-function makeDecotratorClass(id) {//对于类来说，装饰器返回的就应该是一个类
-	return function testDecorater(t, p2, p3) {//这样才会变量提升
-		console.log(id,t, p2, p3);
-		return class extends Component {
-			render(){
-				return(<div>aaaa</div>)
-			}
-		}; 
-	}
-}
-let testApp = new App();
-testApp.test();
+// 	return  (target, prop_name, descObj)=> {
+// 		console.log(id,target);//这里使用settimeout的原因是 装饰器在编译时执行，那时候App类还没有被建立，所以不加异步，App会是undefined
+// 		setTimeout(()=>{console.log(App.prototype === target)},0);//经过尝试，这里的target就是App.protptype
+// 	}
+// }
+// function makeDecotratorClass(id) {//对于类来说，装饰器返回的就应该是一个类
+// 	return function testDecorater(t, p2, p3) {//这样才会变量提升
+// 		console.log(id,t, p2, p3);
+// 		return class extends Component {
+// 			render(){
+// 				return(<div>aaaa</div>)
+// 			}
+// 		}; 
+// 	}
+// }
+// let testApp = new App();
+// testApp.test();
 // let a = 'sss';
 // @makeDecotrator('变量')
 
