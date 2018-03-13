@@ -10,3 +10,11 @@ var obj = new Proxy({}, {
 });
 obj.count = 111;
 let k = obj.count;
+
+
+// class A {
+//     XXX = '123'
+// }
+// let a= new A();
+// // Object.
+// console.log(a.hasOwnProperty('XXX'))
