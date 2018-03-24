@@ -20,14 +20,15 @@ class Store {
     @computed get TimeLineFile() {
         console.log('computed');
         let rst = [];
-        allPaths.forEach(p=>{
-            let helper=require(p+'/index.js');
+        allPaths.forEach(p => {
+            let helper = require(p + '/index.js');
             rst.push({
-                title : p.split('/')[1],
+                title: p.split('/')[3],
                 ...helper.getBasicInfo(),
-                path:p
+                path: p
             });
         });
+        rst.sort((a, b) => { return b.time - a.time });
         return rst;
     }
     @action.bound changeTag(tag) {
@@ -51,7 +52,7 @@ function getAllpath(fmap) {
             getPath(obj[key], currentpath + '/' + key);
         });
     }
-    getPath(fmap,'./articles');
+    getPath(fmap, './articles');
     return paths;
 }
 

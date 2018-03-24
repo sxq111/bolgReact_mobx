@@ -7,7 +7,7 @@ import Article from './Containers/Article';
 import ArticleList from './Containers/ArticleList';
 import { observer } from 'mobx-react';
 import Timeline from './Containers/TimeLine';
-import {SimpleAutoBind} from 'SRC/simpleAutoBind';
+import { SimpleAutoBind } from 'SRC/simpleAutoBind';
 
 const SubMenu = Menu.SubMenu;
 
@@ -19,7 +19,7 @@ class App extends Component {
 	async  componentDidMount() {
 	}
 	@SimpleAutoBind
-	changeTag(tag){
+	changeTag(tag) {
 		this.props.store.changeTag(tag);
 	}
 	render() {

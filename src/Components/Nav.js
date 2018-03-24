@@ -1,6 +1,7 @@
 import { Menu, Badge,Icon } from 'antd';
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import styles from './nav.css';
 {/* <Icon type="bars" /> */}
 @withRouter
 export default class extends Component {
@@ -28,6 +29,7 @@ export default class extends Component {
                 </Menu>
                 <div style = {{position:'absolute',bottom:10,width:'100%',fontSize:'2rem',cursor:'pointer',color:this.props.displayMode === 'timeline'?'black':'#c6cbd1'}}>
                     <Icon style = {{display:'block'}} type="bars"
+                        className = {styles.navTimeline}
                         onClick = {
                             ()=>{
                                 this.props.history.push('/timeLine')

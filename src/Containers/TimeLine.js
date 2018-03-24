@@ -3,29 +3,18 @@ import React, { Component } from 'react';
 export default class extends Component {
     componentDidMount() {
         this.props.onTimeline();
-        // setInterval(()=>{
-        //     console.log(this.props.timeLineData);
-        // },1000)
     }
     componentWillUnmount() {
         this.props.onNormal();
     }
     render() {
-        // console.log(
-        //     getNum_N([1, 1], (n, calculator) => {
-        //         if (n <= 2)
-        //             return 1;
-        //         return calculator(n - 1) + calculator(n - 2);
-        //     })(10)
-        // );
-        // console.log(
-        //     getNum_N([1], (n, calculator) => {
-        //         if (n <= 1)
-        //             return 1;
-        //         return calculator(n - 1) * n;
-        //     })(5)
-        // );
-        return (<div></div>)
+        return (<div>
+            {
+                this.props.timeLineData && this.props.timeLineData.map(data=>{
+                    return (<p>{data.title}</p>)
+                })
+            }
+        </div>)
     }
 }
 // const getNum_N = function (knowedValues = [], logicFunc) {
