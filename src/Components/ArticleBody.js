@@ -6,6 +6,7 @@ import Head from './mdBlockRenderers/heading';
 import List from './mdBlockRenderers/list';
 import Table from './mdBlockRenderers/table';
 import Img from './mdBlockRenderers/img';
+import HTML from './articleHtml';
 
 export default (props) => {
     return (
@@ -16,7 +17,8 @@ export default (props) => {
             heading:Head,
             list:List,
             table:Table,
-            image:Img
+            image:Img,
+            // root:HTML
         }}
         />
     )

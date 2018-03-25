@@ -14,7 +14,7 @@ export default class extends Component {
             path = path.split('/');
             path = path[path.length -1];
             theImg = require(`../../articles/${this.props.match.params.tag}/${this.props.match.params.name}/imgs/${path}`);
-            console.log(this.props);
+            // console.log(this.props);
         }else{
             //网络图片
             theImg = this.props.src;

@@ -36,7 +36,7 @@ class App extends Component {
 						tag={this.props.store.currentTag}
 						onChangeTag={this.changeTag} />
 					{/* 文章列表区 */}
-					<div style={{ height: '100%', width: 'auto', overflow: 'scroll', background: '#fff', overflowX: 'hidden' }}>
+					<div id = 'articleMain' style={{ height: '100%', width: 'auto', overflow: 'scroll', background: '#fff', overflowX: 'hidden' }}>
 						<Switch>
 							{/* 文章显示区 */}
 							<Route path='/:tag/:name' component={Article} />
