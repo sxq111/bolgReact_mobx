@@ -31,7 +31,7 @@
     border: 1px solid rgb(206, 206, 206);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    text-shadow: 0 0 5px grey;
+    animation: textShadow 1s linear infinite alternate;
 }
 .paragraph{
     cursor: pointer;
@@ -39,4 +39,13 @@
 .paragraph:hover{
     text-shadow: 0 0 10px grey;
     transition: text-shadow .3s ease;
+}
+
+@keyframes textShadow{
+    0%{
+        text-shadow: 0 0 0px black;
+    }
+    100%{
+        text-shadow: 0 0 6px black;
+    }
 }
