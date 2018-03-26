@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { debounceDecorator } from 'SRC/simpleAutoBind';
+import styles from './articleInsideNav.css';
 export default class extends Component {
     state = { headings: [] }
     componentDidMount() {
@@ -55,7 +56,7 @@ export default class extends Component {
     }
     @debounceDecorator(1000 / 60)
     clkHLink(getTimmer, h) {
-        console.log('intervaling');
+        console.log('intervaling',h.tagName);
         let timmer = getTimmer();
         let rect = h.getBoundingClientRect();
         let speed = rect.top / 5;
@@ -69,16 +70,32 @@ export default class extends Component {
     }
     render() {
         return (
-            <div style={{ position: 'fixed', right: 0, top: 20, background: '#ddd' }}>
+            <div className = {styles.navBody}>
                 {
                     this.state.headings.map((h, index) => (
                         <p
                             onClick={this.clkHLink.bind(this, h)}
                             key={index}
-                            style={{ color: this.state.currentNode === index ? 'green' : 'black' }}
+                            style={{ color: this.state.currentNode === index ? 'green' : 'black' ,marginBottom:5,paddingLeft:getPadding(h.tagName)}}
                         >{h.innerText}</p>))
                 }
             </div>
         )
+    }
+}
+const getPadding = (level)=>{
+    switch(level.toLowerCase()){
+        case 'h1':
+        return 0
+        case 'h2':
+        return 5
+        case 'h3':
+        return 10
+        case 'h4':
+        return 15
+        case 'h5':
+        return 20
+        case 'h6':
+        return 25
     }
 }

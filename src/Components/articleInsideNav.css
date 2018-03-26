@@ -1,0 +1,33 @@
+.navBody{
+    position: fixed;
+    /* right: 0px; */
+    top: -230px;
+    /* left: 0; */
+    background: #f5f2f0;
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 10px;
+    box-sizing: border-box;
+    height: 230px;
+    padding: 10px;
+    transition: top .3s ease;
+    min-width: 100px;
+    z-index: 20;
+}
+.navBody:hover{
+    top:0;
+}
+.navBody::after{
+    z-index: 20;
+    content: '目录';
+    position: absolute;
+    bottom: 0;
+    background: #f5f2f0;
+    height: 20px;
+    width: 40px;
+    text-align: center;
+    left: calc(50% - 20px);
+    margin-bottom: -20px;
+    border: 1px solid rgb(206, 206, 206);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
