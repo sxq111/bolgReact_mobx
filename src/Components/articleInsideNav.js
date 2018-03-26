@@ -73,7 +73,7 @@ export default class extends Component {
             <div className = {styles.navBody}>
                 {
                     this.state.headings.map((h, index) => (
-                        <p
+                        <p  className = {styles.paragraph}
                             onClick={this.clkHLink.bind(this, h)}
                             key={index}
                             style={{ color: this.state.currentNode === index ? 'green' : 'black' ,marginBottom:5,paddingLeft:getPadding(h.tagName)}}
@@ -88,14 +88,14 @@ const getPadding = (level)=>{
         case 'h1':
         return 0
         case 'h2':
-        return 5
-        case 'h3':
         return 10
-        case 'h4':
-        return 15
-        case 'h5':
+        case 'h3':
         return 20
+        case 'h4':
+        return 30
+        case 'h5':
+        return 40
         case 'h6':
-        return 25
+        return 50
     }
 }
