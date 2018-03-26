@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { width } from 'window-size';
+import {debounceDecorator} from 'SRC/simpleAutoBind';
 export default class extends Component {
     state = { headings: [] }
     componentDidMount() {
@@ -53,10 +53,19 @@ export default class extends Component {
     componentWillUnmount() {
         clearInterval(this.timmer);
     }
-    clkHLink(h){
+    @debounceDecorator(1000/60)
+    clkHLink(getTimmer,h){
+        console.log('intervaling');
+        let timmer = getTimmer();
         let rect = h.getBoundingClientRect();
-        this.articleBody.scrollBy(0,rect.top);
-        // console.log(rect);
+        let speed = rect.top/5;
+        if(rect.top>-5 && rect.top<5){
+            clearInterval(timmer);
+        }
+        if(Math.abs(this.articleBody.scrollTop + this.articleBody.clientHeight - this.articleBody.scrollHeight)<=5 && speed>0){
+            clearInterval(timmer);
+        }
+        this.articleBody.scrollBy(0,speed);
     }
     render() {
         return (

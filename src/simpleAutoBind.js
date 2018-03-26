@@ -1,7 +1,7 @@
 
-function myDecorator(target, name,{ value: fn, configurable, enumerable }) {
-    if(!name){
-        throw new Error('this decorator must be used for property');
+function myDecorator(target, name, { value: fn, configurable, enumerable }) {
+    if (!name) {
+        throw new Error('this decorator must be used for class property');
     }
     return {
         configurable,
@@ -21,35 +21,25 @@ function myDecorator(target, name,{ value: fn, configurable, enumerable }) {
 
 export const SimpleAutoBind = myDecorator;
 
-// @SimpleAutoBind
-// class A {
-//     // @myDecorator
-//     test(xxx) {
-//         console.log('test func', xxx, this.xxx);
-//     }
-//     xxx = 'this.xxx'
-//     testB(xxx) {
-//         this.test(xxx);
-//     }
-// }
-// class C extends A {
-
-// }
-
-
-// let CA = new A();
-
-// let CC = new C();
-// // console.log(CC,CA)
-// // CA.test('sss');
-// // CA.testB('123');
-// // CC.test('asd');
-// // CC.testB('qwe');
-// // let vvv = CA.test;
-// // vvv('sadqweeqweqw');
-// A.prototype.test
-// C.prototype.test
-// // CA.constructor.test;
-// // A.prototype.test;
-// // C.prototype.test;
-// // console.log('xxxx',CA);
+export const debounceDecorator = makeDebounce;
+function makeDebounce (step = 100){
+    return function debounce(target, name, { value: fn}) {
+        if (!name) {
+            throw new Error('this decorator must be used for class property');
+        }
+        let lastTimer = null;
+        function getTimmer(){
+            return lastTimer;
+        }
+        return{
+            get(){
+                return function(...args){
+                    if(lastTimer){
+                        clearInterval(lastTimer);
+                    }
+                    lastTimer = setInterval(fn.bind(this,getTimmer,...args),step);
+                }
+            }
+        }
+    }
+}
