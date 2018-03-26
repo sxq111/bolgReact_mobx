@@ -28,7 +28,10 @@ class App extends Component {
 			<BrowserRouter>
 				<div className={stylesLess.body}>
 					<Route path='/:tag/:name' render={(props) => {
-						this.props.store.changeTag(props.match.params.tag);
+						if(this.props.store.currentTag!== props.match.params.tag)
+						{
+							this.props.store.changeTag(props.match.params.tag);//这里会导致一个  不要在render中更新的警告，但是实际上不会产生问题
+						}
 						return null;
 					}} />
 					<Nav fileMap={this.props.store.FileMapCount}
