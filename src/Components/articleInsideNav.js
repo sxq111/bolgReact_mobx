@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {debounceDecorator} from 'SRC/simpleAutoBind';
+import { debounceDecorator } from 'SRC/simpleAutoBind';
 export default class extends Component {
     state = { headings: [] }
     componentDidMount() {
@@ -28,11 +28,11 @@ export default class extends Component {
                     for (let n = this.state.headings.length - 1; n > -1; n--) {
                         if (this.isNodeInClient(this.state.headings[n]).direction === 'top') {
                             currentIndex = n;
-                            break 
+                            break
                         }
                     }
                 }
-                this.setState({currentNode:currentIndex});
+                this.setState({ currentNode: currentIndex });
             }, 100);
         }, 1000)
     }
@@ -53,19 +53,19 @@ export default class extends Component {
     componentWillUnmount() {
         clearInterval(this.timmer);
     }
-    @debounceDecorator(1000/60)
-    clkHLink(getTimmer,h){
+    @debounceDecorator(1000 / 60)
+    clkHLink(getTimmer, h) {
         console.log('intervaling');
         let timmer = getTimmer();
         let rect = h.getBoundingClientRect();
-        let speed = rect.top/5;
-        if(rect.top>-5 && rect.top<5){
+        let speed = rect.top / 5;
+        if (rect.top > -5 && rect.top < 5) {
             clearInterval(timmer);
         }
-        if(Math.abs(this.articleBody.scrollTop + this.articleBody.clientHeight - this.articleBody.scrollHeight)<=5 && speed>0){
+        if (Math.abs(this.articleBody.scrollTop + this.articleBody.clientHeight - this.articleBody.scrollHeight) <= 5 && speed > 0) {
             clearInterval(timmer);
         }
-        this.articleBody.scrollBy(0,speed);
+        this.articleBody.scrollBy(0, speed);
     }
     render() {
         return (
@@ -73,7 +73,7 @@ export default class extends Component {
                 {
                     this.state.headings.map((h, index) => (
                         <p
-                            onClick = {this.clkHLink.bind(this,h)}
+                            onClick={this.clkHLink.bind(this, h)}
                             key={index}
                             style={{ color: this.state.currentNode === index ? 'green' : 'black' }}
                         >{h.innerText}</p>))
