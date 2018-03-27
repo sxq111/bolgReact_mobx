@@ -20,7 +20,6 @@ function myDecorator(target, name, { value: fn, configurable, enumerable }) {
         }
     }
 }
-
 function makeDebounce(step = 100) {
     return function debounce(target, name, { value: fn }) {
         if (!name) {
