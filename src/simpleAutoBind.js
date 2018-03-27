@@ -23,7 +23,6 @@ function myDecorator(target, name, { value: fn, configurable, enumerable }) {
 
 function makeDebounce(step = 100) {
     return function debounce(target, name, { value: fn }) {
-        // console.log(target,name,fn,get)
         if (!name) {
             throw new Error('this decorator must be used for class property');
         }
