@@ -7,7 +7,7 @@ import Article from './Containers/Article';
 import ArticleList from './Containers/ArticleList';
 import { observer } from 'mobx-react';
 import Timeline from './Containers/TimeLine';
-import { SimpleAutoBind } from 'SRC/simpleAutoBind';
+import { SimpleAutoBind,waitingForDecorator } from 'SRC/simpleAutoBind';
 
 const SubMenu = Menu.SubMenu;
 
@@ -22,12 +22,14 @@ class App extends Component {
 	changeTag(tag) {
 		this.props.store.changeTag(tag);
 	}
-	testClk(){
+	@waitingForDecorator
+	testClk(fin){
 		let promise = new Promise((resolve)=>{
 			console.log('promise start')
 			setTimeout(()=>{resolve('asdadsads')},2000);
 		});
 		promise.then(rst=>{
+			fin();
 			console.log('promise Fin',rst);
 		})
 	}
@@ -36,7 +38,7 @@ class App extends Component {
 		return (
 			<BrowserRouter>
 				<div className={stylesLess.body}>
-					<Button onClick = {this.testClk} >测试</Button>
+					{/* <Button onClick = {this.testClk} >测试</Button> */}
 					<Route path='/:tag/:name' render={(props) => {
 						if(this.props.store.currentTag!== props.match.params.tag)
 						{

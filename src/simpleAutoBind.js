@@ -1,5 +1,6 @@
 export const SimpleAutoBind = myDecorator;
 export const debounceIntervalDecorator = makeDebounce;
+export const waitingForDecorator = waitingFor;
 
 function myDecorator(target, name, { value: fn, configurable, enumerable }) {
     if (!name) {
@@ -36,7 +37,26 @@ function makeDebounce(step = 100) {
                 }
                 lastTimer = setInterval(fn.bind(this, getTimmer, ...args), step);
             }
+        }
+    }
+}
 
+function waitingFor(target, name, { value: fn }) {
+    if (!name) {
+        throw new Error('this decorator must be used for class property');
+    }
+    let busying = false;
+    function finish(){
+        busying = false;
+    }
+    return {
+        value: function (...args) {
+            if(busying){
+                // console.log('busying,waiting please',args);
+                return;
+            }
+            busying = true;
+            fn.apply(this,[finish,...args]);
         }
     }
 }
