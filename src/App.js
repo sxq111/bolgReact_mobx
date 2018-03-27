@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import stylesLess from './App2.less';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { Menu } from 'antd';
+import  {Button, Menu } from 'antd';
 import Nav from './Components/Nav';
 import Article from './Containers/Article';
 import ArticleList from './Containers/ArticleList';
@@ -22,11 +22,21 @@ class App extends Component {
 	changeTag(tag) {
 		this.props.store.changeTag(tag);
 	}
+	testClk(){
+		let promise = new Promise((resolve)=>{
+			console.log('promise start')
+			setTimeout(()=>{resolve('asdadsads')},2000);
+		});
+		promise.then(rst=>{
+			console.log('promise Fin',rst);
+		})
+	}
 	render() {
 		const { store } = this.props;
 		return (
 			<BrowserRouter>
 				<div className={stylesLess.body}>
+					<Button onClick = {this.testClk} >测试</Button>
 					<Route path='/:tag/:name' render={(props) => {
 						if(this.props.store.currentTag!== props.match.params.tag)
 						{

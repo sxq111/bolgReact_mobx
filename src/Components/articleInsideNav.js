@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { debounceDecorator } from 'SRC/simpleAutoBind';
+import { debounceIntervalDecorator ,SimpleAutoBind} from 'SRC/simpleAutoBind';
 import styles from './articleInsideNav.css';
 export default class extends Component {
     state = { headings: [] }
@@ -54,7 +54,8 @@ export default class extends Component {
     componentWillUnmount() {
         clearInterval(this.timmer);
     }
-    @debounceDecorator(1000 / 60)
+    @SimpleAutoBind
+    @debounceIntervalDecorator(1000/40)
     clkHLink(getTimmer, h) {
         console.log('intervaling',h.tagName);
         let timmer = getTimmer();
@@ -69,12 +70,13 @@ export default class extends Component {
         this.articleBody.scrollBy(0, speed);
     }
     render() {
+        let func = this.clkHLink
         return (
             <div className = {styles.navBody}>
                 {
                     this.state.headings.map((h, index) => (
                         <p  className = {styles.paragraph}
-                            onClick={this.clkHLink.bind(this, h)}
+                            onClick={()=>{func(h)}}
                             key={index}
                             style={{ color: this.state.currentNode === index ? 'green' : 'black' ,marginBottom:5,paddingLeft:getPadding(h.tagName)}}
                         >{h.innerText}</p>))

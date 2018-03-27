@@ -1,3 +1,5 @@
+export const SimpleAutoBind = myDecorator;
+export const debounceIntervalDecorator = makeDebounce;
 
 function myDecorator(target, name, { value: fn, configurable, enumerable }) {
     if (!name) {
@@ -19,27 +21,24 @@ function myDecorator(target, name, { value: fn, configurable, enumerable }) {
     }
 }
 
-export const SimpleAutoBind = myDecorator;
-
-export const debounceDecorator = makeDebounce;
-function makeDebounce (step = 100){
-    return function debounce(target, name, { value: fn}) {
+function makeDebounce(step = 100) {
+    return function debounce(target, name, { value: fn }) {
+        // console.log(target,name,fn,get)
         if (!name) {
             throw new Error('this decorator must be used for class property');
         }
         let lastTimer = null;
-        function getTimmer(){
+        function getTimmer() {
             return lastTimer;
         }
-        return{
-            get(){
-                return function(...args){
-                    if(lastTimer){
-                        clearInterval(lastTimer);
-                    }
-                    lastTimer = setInterval(fn.bind(this,getTimmer,...args),step);
+        return {
+            value: function (...args) {
+                if (lastTimer) {
+                    clearInterval(lastTimer);
                 }
+                lastTimer = setInterval(fn.bind(this, getTimmer, ...args), step);
             }
+
         }
     }
 }
