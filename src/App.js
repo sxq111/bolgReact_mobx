@@ -7,7 +7,7 @@ import Article from './Containers/Article';
 import ArticleList from './Containers/ArticleList';
 import { observer } from 'mobx-react';
 import Timeline from './Containers/TimeLine';
-import { SimpleAutoBind,waitingForDecorator } from 'SRC/simpleAutoBind';
+import { SimpleAutoBind,waitingForDecorator,testDesc} from 'SRC/simpleAutoBind';
 
 const SubMenu = Menu.SubMenu;
 
@@ -16,6 +16,13 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 	}
+	@testDesc('实例属性1')
+	xxx= 'xxx';
+	@testDesc('实例属性2')
+	test=()=>{
+
+	}
+	@testDesc('原型方法')
 	async  componentDidMount() {
 	}
 	@SimpleAutoBind
@@ -34,6 +41,7 @@ class App extends Component {
 		})
 	}
 	render() {
+		console.log(App.prototype)
 		const { store } = this.props;
 		return (
 			<BrowserRouter>

@@ -1,6 +1,13 @@
 export const SimpleAutoBind = myDecorator;
 export const debounceIntervalDecorator = makeDebounce;
 export const waitingForDecorator = waitingFor;
+export const testDesc = test;
+
+function test(aname) {
+    return function (target, name, desc) {
+        console.log(aname, target, name, desc);
+    }
+}
 
 function myDecorator(target, name, { value: fn, configurable, enumerable }) {
     if (!name) {
@@ -46,17 +53,17 @@ function waitingFor(target, name, { value: fn }) {
         throw new Error('this decorator must be used for class property');
     }
     let busying = false;
-    function finish(){
+    function finish() {
         busying = false;
     }
     return {
         value: function (...args) {
-            if(busying){
+            if (busying) {
                 // console.log('busying,waiting please',args);
                 return;
             }
             busying = true;
-            fn.apply(this,[finish,...args]);
+            fn.apply(this, [finish, ...args]);
         }
     }
 }
