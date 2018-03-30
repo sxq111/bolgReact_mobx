@@ -55,6 +55,6 @@
 
 # IFC
 
-ifc叫做行内格式化上下文，在ifc 中，行内元素一个接着一个的排列。每一行的行内元素处于一个line-box中，line-box的高度由其包含的最高的元素来确定。
+ifc叫做行内格式化上下文，在ifc 中，行内元素一个接着一个的排列。每一行的行内元素处于一个line-box中，line-box的高度由其包含的line-height最高的元素来确定。
 
-vertical-align控制着行盒(line-box)中元素的垂直对齐，默认为baseline对齐。
+vertical-align控制着行盒(line-box)中元素的垂直对齐，默认为baseline对齐。一个line-box的baseline以它的子元素最下面的baseline为基准

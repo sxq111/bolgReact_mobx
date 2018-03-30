@@ -59,7 +59,6 @@ function waitingFor(target, name, { value: fn }) {
     return {
         value: function (...args) {
             if (busying) {
-                // console.log('busying,waiting please',args);
                 return;
             }
             busying = true;
