@@ -7,6 +7,7 @@ import List from './mdBlockRenderers/list';
 import Table from './mdBlockRenderers/table';
 import Img from './mdBlockRenderers/img';
 import HTML from './articleHtml';
+import BQ from './mdBlockRenderers/blockquote';
 
 export default (props) => {
     return (
@@ -18,6 +19,7 @@ export default (props) => {
             list:List,
             table:Table,
             image:Img,
+            blockquote:BQ
             // root:HTML
         }}
         />
