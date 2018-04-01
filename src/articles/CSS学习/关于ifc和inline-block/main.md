@@ -86,3 +86,5 @@ vertical-align控制着行盒(line-box)中元素的垂直对齐，默认为basel
 > The baseline of an ‘inline-block’ is the baseline of its last line box in the normal flow, unless it has either no in-flow line boxes or if its ‘overflow’ property has a computed value other than ‘visible’, in which case the baseline is the bottom margin edge.
 
 翻译：一个inline-block的beseline是它的标准文档流子元素中，最后一个line-box的baseline。如果它的overflow不为visible或者它没有标准文档流的子元素，这种情况下它的baseline为它的margin-box底边。
+
+对于上文的例子，如何让它们对齐呢？给他们加上同样的对齐方式，破坏掉默认的baseline就可以了。
