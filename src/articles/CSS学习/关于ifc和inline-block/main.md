@@ -1,4 +1,4 @@
-## inline-block
+# inline-block
 
 通过display:inline-block可以将一个元素变成行内元素，同时保持块级元素的某些特性，比如：可以设置他的宽高、可以设置他的margin。
 
