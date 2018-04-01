@@ -70,8 +70,8 @@ export default class extends Component {
         this.articleBody.scrollBy(0, speed);
     }
     render() {
-        let func = this.clkHLink
-        return (
+        let func = this.clkHLink;
+        return this.state.headings.length>0?(
             <div className = {styles.navBody}>
                 {
                     this.state.headings.map((h, index) => (
@@ -82,7 +82,7 @@ export default class extends Component {
                         >{h.innerText}</p>))
                 }
             </div>
-        )
+        ):null;
     }
 }
 const getPadding = (level)=>{
