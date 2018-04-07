@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import Article from '../Components/ArticleBody';
 import AINav from '../Components/articleInsideNav';
 const Gitment = require('gitment');
+import { observer } from 'mobx-react';
+import store from '../mobx_store';
 require('gitment/style/default.css');
+
+@observer
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -10,6 +14,11 @@ export default class extends Component {
     }
     componentDidMount() {
         let { match: { params } } = this.props;
+        let {FileMap} = store;
+        if(!(FileMap[params.tag]&&FileMap[params.tag][params.name])){
+            this.setState({md:null});
+            return;
+        }
         import(`../articles/${params.tag}/${params.name}`).then(md => {
             this.setState({ md: md.getArticle() });
         })
