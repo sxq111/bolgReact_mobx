@@ -3,6 +3,7 @@ import stylesLess from './App2.less';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import  {Button, Menu } from 'antd';
 import Nav from './Components/Nav';
+import Nav2 from './Components/Nav2';
 import Article from './Containers/Article';
 import ArticleList from './Containers/ArticleList';
 import { observer } from 'mobx-react';
@@ -54,7 +55,7 @@ class App extends Component {
 						}
 						return null;
 					}} />
-					<Nav fileMap={this.props.store.FileMapCount}
+					<Nav2 fileMap={this.props.store.FileMapCount}
 						displayMode={this.props.store.displayMode}
 						tag={this.props.store.currentTag}
 						onChangeTag={this.changeTag} />

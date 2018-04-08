@@ -6,3 +6,34 @@
     text-shadow: 0 0 0px black;
     transition: text-shadow .3s ease;
 }
+.navBody{
+    float: left;
+    height: 100%;
+    background:#fff;
+    border-right:1px solid #e9e9e9;
+    position:relative;
+}
+.navItem{
+    padding: 10px;
+    font-size: .75rem;
+    line-height: 2em;
+    position: relative;
+}
+.navItem::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 0;
+    left: 0;
+    top:100%;
+    border-right: 2px solid gray;
+    transition: .2s all linear;
+}
+.navItem:hover::before{
+    background: rgba(24, 144, 255, 0.2);
+    height: 100%;
+    top:0;
+}
+.navItem:hover + .navItem::before{
+    top:0;
+}
