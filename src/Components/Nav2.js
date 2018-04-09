@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import Badge from './Badge';
 import styles from './nav.css';
 {/* <Icon type="bars" /> */}
 @withRouter
@@ -16,7 +17,9 @@ export default class extends Component {
                         return (
                             <div className  = {styles.navItem+' '+(this.props.tag === tag?styles.navItemSelected:'')}
                             onClick = {this.clkNode.bind(this,tag)}
-                            >{tag}</div>
+                            >{tag}
+                            <Badge style = {{float:'right',verticalAlign:'middle'}} title = {this.props.fileMap[tag]}/>
+                            </div>
                         );
                     })
                 }

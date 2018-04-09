@@ -45,6 +45,10 @@
     height: 100%;
     left: 0;
     top:0;
+    /* background: transparent; */
     background:rgba(24, 144, 255, 0.4);
     border-right: 2px solid rgba(24, 144, 255, 0.6);
+}
+.navItem:hover::before{
+    /* background: rgba(24, 144, 255, 0.2);  */
 }
