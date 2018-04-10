@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { debounceIntervalDecorator ,SimpleAutoBind} from 'SRC/simpleAutoBind';
+import { debounceIntervalDecorator, SimpleAutoBind } from 'SRC/simpleAutoBind';
 import styles from './articleInsideNav.css';
 export default class extends Component {
     state = { headings: [] }
@@ -55,13 +55,14 @@ export default class extends Component {
         clearInterval(this.timmer);
     }
     @SimpleAutoBind
-    @debounceIntervalDecorator(1000/40)
+    @debounceIntervalDecorator(1000 / 40)
     clkHLink(getTimmer, h) {
-        console.log('intervaling',h.tagName);
+        let articleBodyYstart = this.articleBody.getBoundingClientRect().y;
         let timmer = getTimmer();
         let rect = h.getBoundingClientRect();
-        let speed = rect.top / 5;
-        if (rect.top > -5 && rect.top < 5) {
+        let distance = rect.top - articleBodyYstart;
+        let speed = distance / 5;
+        if (distance > -5 && distance < 5) {
             clearInterval(timmer);
         }
         if (Math.abs(this.articleBody.scrollTop + this.articleBody.clientHeight - this.articleBody.scrollHeight) <= 5 && speed > 0) {
@@ -71,33 +72,33 @@ export default class extends Component {
     }
     render() {
         let func = this.clkHLink;
-        return this.state.headings.length>0?(
-            <div className = {styles.navBody}>
+        return this.state.headings.length > 0 ? (
+            <div className={styles.navBody}>
                 {
                     this.state.headings.map((h, index) => (
-                        <p  className = {styles.paragraph}
-                            onClick={()=>{func(h)}}
+                        <p className={styles.paragraph}
+                            onClick={() => { func(h) }}
                             key={index}
-                            style={{ color: this.state.currentNode === index ? 'green' : 'black' ,marginBottom:5,paddingLeft:getPadding(h.tagName)}}
+                            style={{ color: this.state.currentNode === index ? 'green' : 'black', marginBottom: 5, paddingLeft: getPadding(h.tagName) }}
                         >{h.innerText}</p>))
                 }
             </div>
-        ):null;
+        ) : null;
     }
 }
-const getPadding = (level)=>{
-    switch(level.toLowerCase()){
+const getPadding = (level) => {
+    switch (level.toLowerCase()) {
         case 'h1':
-        return 0
+            return 0
         case 'h2':
-        return 10
+            return 10
         case 'h3':
-        return 20
+            return 20
         case 'h4':
-        return 30
+            return 30
         case 'h5':
-        return 40
+            return 40
         case 'h6':
-        return 50
+            return 50
     }
 }

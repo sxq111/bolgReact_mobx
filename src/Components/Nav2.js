@@ -11,14 +11,14 @@ export default class extends Component {
     }
     render() {
         return(
-            <div style={{ width: 100 }} className = {styles.navBody}>
+            <div className = {styles.navBody}>
                 {
                     Object.keys(this.props.fileMap || []).map(tag => {
                         return (
                             <div className  = {styles.navItem+' '+(this.props.tag === tag?styles.navItemSelected:'')}
                             onClick = {this.clkNode.bind(this,tag)}
                             >{tag}
-                            <Badge style = {{float:'right',verticalAlign:'middle'}} title = {this.props.fileMap[tag]}/>
+                            <Badge style = {{position:'absolute',top:0,bottom:0,margin:'auto',right:'10px',zIndex:1,background:'#fff'}} title = {this.props.fileMap[tag]}/>
                             </div>
                         );
                     })

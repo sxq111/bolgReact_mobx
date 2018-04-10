@@ -7,6 +7,7 @@
     transition: text-shadow .3s ease;
 }
 .navBody{
+    width: 100px;
     float: left;
     height: 100%;
     background:#fff;
@@ -27,8 +28,9 @@
     height: 0;
     left: 0;
     top:100%;
+    z-index: 0;
     /* border-right: 2px solid gray; */
-    transition: height .2s linear,top .2s linear;
+    transition: height .2s ease,top .2s ease;
 }
 .navItem:hover::before{
     height: 100%;
@@ -39,6 +41,7 @@
     top:0;
 }
 .navItemSelected::before{
+    z-index: 0;
     content: '';
     position: absolute;
     width: 100%;
@@ -49,6 +52,14 @@
     background:rgba(24, 144, 255, 0.4);
     border-right: 2px solid rgba(24, 144, 255, 0.6);
 }
-.navItem:hover::before{
-    /* background: rgba(24, 144, 255, 0.2);  */
+@media all and (max-width:600px){
+    .navBody{
+        float: none;
+        width: auto;
+        height: auto;
+    }
+    .navItem{
+        display: inline-block;
+        width: 100px;
+    }
 }
