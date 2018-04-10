@@ -10,3 +10,12 @@
     transform: scale(1, 1);
     transition: transform .3s ease;
 }
+.articleItem{
+    width: 250px;
+    padding: 5px;
+}
+@media all and (max-width:600px){
+    .articleItem{
+        width:auto;
+    }
+}

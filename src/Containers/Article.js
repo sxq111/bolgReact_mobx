@@ -27,6 +27,7 @@ export default class extends Component {
     }
 
     render() {
+        console.log(this.articleIns)
         return (
             <div style={{ padding: 10 }}>
                 <div ref={(ins) => { this.articleIns = ins; }} style={{ width: '95%', margin: '0 auto' }}>

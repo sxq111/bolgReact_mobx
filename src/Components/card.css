@@ -1,0 +1,7 @@
+.card{
+    box-shadow: slategrey 0 0 4px 1px;
+    transition: box-shadow .2s ease;
+}
+.card:hover{
+    box-shadow: slategrey 3px 3px 4px 2px;
+}
