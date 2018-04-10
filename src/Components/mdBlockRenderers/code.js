@@ -12,7 +12,7 @@ export default class extends Component {
     render() {
         const cls = `language-${this.props.language}`;
         return (
-            <pre className={cls}>
+            <pre style = {{overflowX:'scroll'}} className={cls}>
                 <code className={cls} ref = {(ins)=>{this.ins = ins}}>
                 </code>
             </pre>

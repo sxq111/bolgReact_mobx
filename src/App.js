@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import stylesLess from './App2.less';
+import './app.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import  {Button, Menu } from 'antd';
-import Nav from './Components/Nav';
 import Nav2 from './Components/Nav2';
+import Nav2M from './Components/Nav2mobile';
 import Article from './Containers/Article';
 import ArticleList from './Containers/ArticleList';
 import { observer } from 'mobx-react';
 import Timeline from './Containers/TimeLine';
-import { SimpleAutoBind,waitingForDecorator,testDesc} from 'SRC/simpleAutoBind';
+import { SimpleAutoBind, waitingForDecorator, testDesc } from 'SRC/simpleAutoBind';
 
-const SubMenu = Menu.SubMenu;
 
 @observer
 class App extends Component {
@@ -18,9 +17,9 @@ class App extends Component {
 		super(props);
 	}
 	@testDesc('实例属性1')
-	xxx= 'xxx';
+	xxx = 'xxx';
 	@testDesc('实例属性2')
-	test=()=>{
+	test = () => {
 
 	}
 	@testDesc('原型方法')
@@ -31,14 +30,14 @@ class App extends Component {
 		this.props.store.changeTag(tag);
 	}
 	@waitingForDecorator
-	testClk(fin){
-		let promise = new Promise((resolve)=>{
+	testClk(fin) {
+		let promise = new Promise((resolve) => {
 			console.log('promise start')
-			setTimeout(()=>{resolve('asdadsads')},2000);
+			setTimeout(() => { resolve('asdadsads') }, 2000);
 		});
-		promise.then(rst=>{
+		promise.then(rst => {
 			fin();
-			console.log('promise Fin',rst);
+			console.log('promise Fin', rst);
 		})
 	}
 	render() {
@@ -49,8 +48,7 @@ class App extends Component {
 				<div className={stylesLess.body}>
 					{/* <Button onClick = {this.testClk} >测试</Button> */}
 					<Route path='/:tag/:name' render={(props) => {
-						if(this.props.store.currentTag!== props.match.params.tag)
-						{
+						if (this.props.store.currentTag !== props.match.params.tag) {
 							this.props.store.changeTag(props.match.params.tag);//这里会导致一个  不要在render中更新的警告，但是实际上不会产生问题
 						}
 						return null;
@@ -59,8 +57,14 @@ class App extends Component {
 						displayMode={this.props.store.displayMode}
 						tag={this.props.store.currentTag}
 						onChangeTag={this.changeTag} />
+					<Nav2M
+						fileMap={this.props.store.FileMapCount}
+						displayMode={this.props.store.displayMode}
+						tag={this.props.store.currentTag}
+						onChangeTag={this.changeTag}
+					/>
 					{/* 文章列表区 */}
-					<div id = 'articleMain' style={{ height: '100%', width: 'auto', overflow: 'scroll', background: '#fff', overflowX: 'hidden' ,paddingBottom:40}}>
+					<div id='articleMain' style={{ height: '100%', width: 'auto', overflow: 'scroll', background: '#fff', overflowX: 'hidden', paddingBottom: 40 }}>
 						<Switch>
 							{/* 文章显示区 */}
 							<Route path='/:tag/:name' component={Article} />

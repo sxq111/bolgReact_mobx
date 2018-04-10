@@ -38,9 +38,10 @@ export default class extends Component {
         }, 1000)
     }
     isNodeInClient(node) {
+        let articleBodyYstart = this.articleBody.getBoundingClientRect().y;
         let rect = node.getBoundingClientRect();
         let clientHeight = document.documentElement.clientHeight;
-        if (rect.bottom < clientHeight + rect.height / 2 && rect.top > 0 - rect.height / 2) {
+        if (rect.bottom < clientHeight + rect.height / 2 && rect.top > articleBodyYstart - rect.height / 2) {
             return {
                 in: true
             }

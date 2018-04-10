@@ -52,14 +52,28 @@
     background:rgba(24, 144, 255, 0.4);
     border-right: 2px solid rgba(24, 144, 255, 0.6);
 }
+.navMobileBody{
+    background: #fff;
+    width: auto;
+    overflow-x: scroll;
+    display: none;
+    white-space: nowrap;
+}
+.navMobileBody .navItem{
+    width: 100px;
+    display: inline-block;
+    border-right: 1px solid rgba(24, 144, 255, 0.2);
+    border-bottom: 1px solid rgba(24, 144, 255, 0.2);
+}
+.navItem:last-child{
+    border-right: none;
+}
+
 @media all and (max-width:600px){
     .navBody{
-        float: none;
-        width: auto;
-        height: auto;
+        display: none;
     }
-    .navItem{
-        display: inline-block;
-        width: 100px;
+    .navMobileBody{
+        display: block;
     }
 }
