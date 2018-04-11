@@ -78,7 +78,6 @@
         transform: translate(0%, -50%);
     }
     .navBody::after {
-        display: table-cell;
         z-index: 20;
         content: '目录';
         position: absolute;
@@ -87,7 +86,6 @@
         background: #f5f2f0;
         transform: translate(0,-50%);
         width: 20px;
-        height: 40px;
         margin-left: -20px;
         text-align: center;
         border: 1px solid rgb(206, 206, 206);
