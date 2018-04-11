@@ -10,7 +10,6 @@ import { observer } from 'mobx-react';
 import Timeline from './Containers/TimeLine';
 import { SimpleAutoBind, waitingForDecorator, testDesc } from 'SRC/simpleAutoBind';
 
-
 @observer
 class App extends Component {
 	constructor(props) {
@@ -68,14 +67,14 @@ class App extends Component {
 						<Switch>
 							{/* 文章显示区 */}
 							<Route path='/:tag/:name' component={Article} />
-							<Route path='/timeLine' render={(props) => {
+							{/* <Route path='/timeLine' render={(props) => {
 								return (
 									<Timeline
 										timeLineData={store.TimeLineFile}
 										onNormal={store.triggerDisplayModeNormal}
 										onTimeline={store.triggerDisplayModeTimekline}
 									/>)
-							}} />
+							}} /> */}
 							<Route path='/'
 								render={(props) => {
 									return (<ArticleList fileMap={this.props.store.FileMap} tag={this.props.store.currentTag} />)

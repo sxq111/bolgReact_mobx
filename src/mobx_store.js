@@ -17,20 +17,20 @@ class Store {
             return prev;
         }), {});
     }
-    @computed get TimeLineFile() {
-        console.log('computed');
-        let rst = [];
-        allPaths.forEach(p => {
-            let helper = require(p + '/index.js');
-            rst.push({
-                title: p.split('/')[3],
-                ...helper.getBasicInfo(),
-                path: p
-            });
-        });
-        rst.sort((a, b) => { return b.time - a.time });
-        return rst;
-    }
+    // @computed get TimeLineFile() {
+    //     console.log('computed');
+    //     let rst = [];
+    //     allPaths.forEach(p => {
+    //         let helper = require(p + '/index.js');
+    //         rst.push({
+    //             title: p.split('/')[3],
+    //             ...helper.getBasicInfo(),
+    //             path: p
+    //         });
+    //     });
+    //     rst.sort((a, b) => { return b.time - a.time });
+    //     return rst;
+    // }
     @action.bound changeTag(tag) {
         this.currentTag = tag;
     }
