@@ -47,7 +47,7 @@ export default class extends Component {
                         return (
                             <Card
                                 className = {styles.articleItem}
-                                style={{float: 'left', margin: 10 }}
+                                style={{float: 'left'}}
                             >
                                 <div style={{ width: '100%', height: 150 ,borderRadius:10,overflow:'hidden'}}>
                                     <img style={{ height: '100%', width: '100%' }} alt="暂无图片" src={data.overviewPic} />

@@ -13,9 +13,13 @@
 .articleItem{
     width: 250px;
     padding: 5px;
+    margin: 10px;
 }
 @media all and (max-width:600px){
     .articleItem{
         width:auto;
+    }
+    .articleItem:last-child{
+        margin-bottom: 40px;
     }
 }
