@@ -55,10 +55,11 @@
         text-shadow: 0 0 6px black;
     }
 }
-@media all and (max-width:600px){
+
+@media all and (max-width:600px) {
     .navBody {
         position: fixed;
-        top:50%;
+        top: 50%;
         right: 0;
         margin: auto;
         background: #f5f2f0;
@@ -82,10 +83,12 @@
         content: '目录';
         position: absolute;
         top: 50%;
+        bottom: unset;
         left: 0;
         background: #f5f2f0;
-        transform: translate(0,-50%);
+        transform: translate(0, -50%);
         width: 20px;
+        height: auto;
         margin-left: -20px;
         text-align: center;
         border: 1px solid rgb(206, 206, 206);

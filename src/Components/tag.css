@@ -1,4 +1,4 @@
-.tag{
+.tag {
     border: 1px solid currentColor;
     display: inline-block;
     font-size: .75rem;
@@ -9,11 +9,17 @@
     position: relative;
     box-shadow: 0 0 1px 1px gray inset;
 }
-.tag:hover{
-    box-shadow: 0 0 3px 1px gray inset;
-    transform:  all .2s ease;
+
+.tag a {
+    text-decoration-line: none;
 }
-.tag::after{
+
+.tag:hover {
+    box-shadow: 0 0 3px 1px gray inset;
+    transform: all .2s ease;
+}
+
+.tag::after {
     content: '';
     position: absolute;
     left: -60px;
@@ -26,6 +32,7 @@
     transition: left .7s ease;
     box-shadow: 0 0 10px 10px currentColor;
 }
-.tag:hover::after{
+
+.tag:hover::after {
     left: 120%;
 }
