@@ -29,10 +29,10 @@
     background: currentColor;
     transform: rotate(40deg);
     opacity: .4;
-    transition: left .7s ease;
-    box-shadow: 0 0 10px 10px currentColor;
+    transition: all .7s ease;
+    box-shadow: 0 0 10px 20px currentColor;
 }
 
 .tag:hover::after {
-    left: 120%;
+    left: 125%;    
 }

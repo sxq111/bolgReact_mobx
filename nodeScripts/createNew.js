@@ -70,6 +70,13 @@ inquirer
                     }
                     console.log('更新文件地图成功');
                 }));
+                fs.mkdir('src/articles/' + tags + '/' + post_name+'/imgs', (err, rst) => {
+                    if(err){
+                        console.log(err);
+                        return;
+                    }
+                    console.log('创建图片文件成功');
+                });
                 copyExposerTemplate('src/articlesHelper/exposerTemplate.js', 'src/articles/' + tags + '/' + post_name + '/' + 'index.js');
                 copyExposerOverviewTemplate('src/articlesHelper/overviewTemplate.png', 'src/articles/' + tags + '/' + post_name + '/' + 'overview.png');
                 fs.writeFile('src/articles/' + tags + '/' + post_name + '/' + 'basicInfo.json',

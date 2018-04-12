@@ -4759,6 +4759,10 @@ mobx@^3.1.7, mobx@^3.6.1:
   version "3.6.1"
   resolved "http://registry.npm.taobao.org/mobx/download/mobx-3.6.1.tgz#ae63a8f00e1485a740d0f91ae2f6a5f68e303bea"
 
+moment@^2.22.0:
+  version "2.22.0"
+  resolved "http://registry.npm.taobao.org/moment/download/moment-2.22.0.tgz#7921ade01017dd45186e7fee5f424f0b8663a730"
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"

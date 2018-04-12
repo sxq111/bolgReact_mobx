@@ -15,7 +15,10 @@
 
 .mdList li {
     margin: 10px;
-    border-bottom: 1px solid #dedede;
+}
+.mdList li:hover {
+    color: black;
+    cursor: pointer;
 }
 .mdList li:last-child{
     border-bottom: 0;
