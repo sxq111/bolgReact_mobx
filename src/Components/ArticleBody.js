@@ -8,7 +8,7 @@ import Table from './mdBlockRenderers/table';
 import Img from './mdBlockRenderers/img';
 import HTML from './articleHtml';
 import BQ from './mdBlockRenderers/blockquote';
-
+import Strong from './mdBlockRenderers/strong';
 export default (props) => {
     return (
         <RMD source = {props.source||'找不到该文章'}
@@ -19,7 +19,8 @@ export default (props) => {
             list:List,
             table:Table,
             image:Img,
-            blockquote:BQ
+            blockquote:BQ,
+            strong :Strong
             // root:HTML
         }}
         />
