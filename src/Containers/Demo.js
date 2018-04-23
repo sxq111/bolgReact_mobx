@@ -83,9 +83,8 @@ class AnimLi extends Component {
         this.height = getComputedStyle(this.eleInstance).height;
         console.log(this.props.children, this.height);
         this.eleInstance.style.height = '0px';
-
+        this.eleInstance.style.transition = 'all 0.3s ease';
         setTimeout(() => {
-            this.eleInstance.style.transition = 'all 0.3s ease';
             this.eleInstance.style.height = this.height;
         }, 0);
         callback();
