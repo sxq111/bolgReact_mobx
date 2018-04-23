@@ -1,0 +1,9 @@
+.strong{
+    background: #e2f716;
+    outline: 1px solid #aaa;
+    cursor: pointer;
+    /* color: black; */
+}
+.strong:hover{
+    outline: 1px solid black;
+}
