@@ -1,0 +1,20 @@
+
+.example-enter {
+  height: none;
+  transition: all 500ms ease-in;
+  }
+  
+  .example-enter.example-enter-active {
+    height: auto;
+    /* height: 30px; */
+  }
+  
+  .example-leave {
+    opacity: 1;
+  }
+  
+  .example-leave.example-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+  }
+  
