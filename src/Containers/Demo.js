@@ -34,7 +34,8 @@ export default class extends Component {
                     let items = this.state.items;
                     items.unshift({
                         key: Date.now(),
-                        title: Date.now()
+                        title: Date.now(),
+                        height: (Math.random() * 100 + 20)
                     })
                     this.setState({ items })
                 }}>
@@ -60,7 +61,23 @@ export default class extends Component {
                         this.state.items.map(ele => {
                             return (
                                 <AnimLi key={ele.key} >
-                                    <div style={{ height: Math.random() * 100 + 20 }} >{ele.title}</div>
+                                    <div style={{ height: ele.height, margin: 5, border: '1px solid black', position: 'relative' }} >
+                                        <span style={{ position: 'absolute', color: '#f00', cursor: 'pointer', right: 5, top: 5 }} onClick={(() => {
+                                            let index_del = this.state.items.reduce((resultPrev, currentEle, index) => {
+                                                if (currentEle.key === ele.key)
+                                                    return index;
+                                                else
+                                                    return resultPrev;
+                                            }, null);
+                                            let arr = this.state.items;
+                                            console.log(index_del);
+                                            if (index_del!== null) {
+                                                arr.splice(index_del, 1);
+                                                this.setState({ items: arr });
+                                            }
+                                        })} >X</span>
+                                        {ele.title}
+                                    </div>
                                 </AnimLi>
                             )
                         })
@@ -71,12 +88,7 @@ export default class extends Component {
         )
     }
 }
-const liStyle = {
-    width: 200,
-    border: '1px solid #678',
-    margin: 5,
-    overflow: 'hidden',
-}
+
 
 class AnimAddList extends Component {
     render() {
@@ -89,28 +101,45 @@ class AnimAddList extends Component {
 }
 class AnimLi extends Component {
     componentWillAppear(callback) {
-        console.log(this.props.children, 'willAppear');
         callback();
     }
     componentDidAppear() {
-        console.log(this.props.children, 'Appear')
     }
     componentWillEnter(callback) {
-        // console.log(this.props.children, 'willEnter',this.eleInstance);
+        // setTimeout(() => {
+        this.eleInstance.style.height = 'auto';
         this.height = getComputedStyle(this.eleInstance).height;
-        console.log(this.props.children, this.height);
+        console.log(Date.now(), 'start change height');
         this.eleInstance.style.height = '0px';
-        this.eleInstance.style.transition = 'all 0.3s ease';
-        setTimeout(() => {
-            this.eleInstance.style.height = this.height;
-        }, 0);
+        this.eleInstance.style.transition = 'height 0.3s ease';
+        console.log(Date.now(), 'start change trans');
         callback();
+        // }, 0);
     }
     componentDidEnter() {
+        setTimeout(() => {
+            this.eleInstance.style.height = this.height;
+        }, 100);
+    }
+    componentWillLeave(callback) {
+        this.eleInstance.style.height = '0px';
+
+        setTimeout(() => {
+            callback();
+        }, 400);
+    }
+    componentDidLeave() {
+
     }
     render() {
+        const liStyle = {
+            overflow: 'hidden',
+        }
         return (
-            <div ref={(ins) => { this.eleInstance = ins; console.log('div mount') }} style={liStyle} >
+            <div ref={(ins) => {
+                if (!this.eleInstance) { console.log('div mount') }
+                this.eleInstance = ins;
+            }} style={{...this.props.style,...liStyle}} >
                 {this.props.children}
             </div>
         )
