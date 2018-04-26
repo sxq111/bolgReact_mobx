@@ -53,8 +53,11 @@ export default class extends Component {
                                                     return resultPrev;
                                             }, null);
                                             let arr = this.state.items;
-                                            arr.splice(index_del, 1);
-                                            this.setState({ items: arr })
+                                            console.log(index_del);
+                                            if (index_del!== null) {
+                                                arr.splice(index_del, 1);
+                                                this.setState({ items: arr });
+                                            }
                                         })} >X</span>
                                         {ele.title}
                                     </div>
@@ -68,10 +71,7 @@ export default class extends Component {
         )
     }
 }
-const liStyle = {
-    width: 200,
-    overflow: 'hidden',
-}
+
 
 class AnimAddList extends Component {
     render() {
@@ -115,11 +115,14 @@ class AnimLi extends Component {
 
     }
     render() {
+        const liStyle = {
+            overflow: 'hidden',
+        }
         return (
             <div ref={(ins) => {
                 if (!this.eleInstance) { console.log('div mount') }
                 this.eleInstance = ins;
-            }} style={liStyle} >
+            }} style={{...this.props.style,...liStyle}} >
                 {this.props.children}
             </div>
         )
