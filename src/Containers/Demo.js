@@ -10,6 +10,23 @@ export default class extends Component {
             // { title: 'aaa', key: 1 }
         ]
     }
+    componentDidMount() {
+        let p1reject;
+        let p1 = new Promise((resolve,reject) => {
+            p1reject = reject;
+            setTimeout(() => {
+                resolve('fin');
+            }, 10000);
+        });
+        setTimeout(() => {
+            p1reject('rej')
+        }, 5000);
+        p1.then(rst => {
+            console.log('p1 fin', rst);
+        }, err => {
+            console.log('p1 rejected', err);
+        });
+    }
     render() {
         return (
             <div>
