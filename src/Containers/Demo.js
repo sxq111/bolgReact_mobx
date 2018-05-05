@@ -35,7 +35,7 @@ export default class extends Component {
                     items.unshift({
                         key: Date.now(),
                         title: Date.now(),
-                        height: (Math.random() * 100 + 20)
+                        height: Math.floor(Math.random() * 100 + 20)
                     })
                     this.setState({ items })
                 }}>
@@ -61,7 +61,7 @@ export default class extends Component {
                         this.state.items.map(ele => {
                             return (
                                 <AnimLi key={ele.key} >
-                                    <div style={{ height: ele.height, margin: 5, border: '1px solid black', position: 'relative' }} >
+                                    <div style={{ boxSizing:'border-box',height: ele.height, margin: 5, border: '1px solid black', position: 'relative' }} >
                                         <span style={{ position: 'absolute', color: '#f00', cursor: 'pointer', right: 5, top: 5 }} onClick={(() => {
                                             let index_del = this.state.items.reduce((resultPrev, currentEle, index) => {
                                                 if (currentEle.key === ele.key)
@@ -109,7 +109,7 @@ class AnimLi extends Component {
         // setTimeout(() => {
         this.eleInstance.style.height = 'auto';
         this.height = getComputedStyle(this.eleInstance).height;
-        console.log(Date.now(), 'start change height');
+        console.log( 'start change height',this.height);
         this.eleInstance.style.height = '0px';
         this.eleInstance.style.transition = 'height 0.3s ease';
         console.log(Date.now(), 'start change trans');
@@ -118,7 +118,7 @@ class AnimLi extends Component {
     }
     componentDidEnter() {
         setTimeout(() => {
-            this.eleInstance.style.height = this.height;
+            this.eleInstance.style.height =Math.ceil(Number.parseFloat(this.height))+'px';
         }, 100);
     }
     componentWillLeave(callback) {
