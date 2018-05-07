@@ -10,6 +10,7 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
@@ -59,6 +60,7 @@ module.exports = {
   // In production, we only want to load the polyfills and the app code.
   entry: {
     app: [require.resolve('./polyfills'), paths.appIndexJs],
+    vendor:['react','react-dom'],
     ...blogs
   },
   output: {
@@ -292,39 +294,39 @@ module.exports = {
     // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
     // It is absolutely essential that NODE_ENV was set to production here.
     // Otherwise React will be compiled in the very slow development mode.
+    // new webpack.optimize.CommonsChunkPlugin({
+     
+    //   name: 'vendor',
+    //   minChunks: ({ resource }) => {
+    //     console.log(resource);
+    //     return(
+    //     resource &&
+    //     resource.indexOf('node_modules') >= 0 &&
+    //     resource.match(/\.js$/)
+    //   )},
+    // }),
+    // new webpack.optimize.CommonsChunkPlugin({
+       // names: Object.keys(blogs),
+    //    // 指定一个希望作为公共包的入口
+    // }),
+
+    new webpack.optimize.CommonsChunkPlugin({names:[...Object.keys(blogs).reverse(),'vendor']}),
+    // new webpack.optimize.CommonsChunkPlugin({name:'vendor'}),
     new webpack.DefinePlugin(env.stringified),
     new UglifyJsPlugin({ sourceMap: false }),
-    // Minify the code.
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: false,
-    //     // Disabled because of an issue with Uglify breaking seemingly valid code:
-    //     // https://github.com/facebookincubator/create-react-app/issues/2376
-    //     // Pending further investigation:
-    //     // https://github.com/mishoo/UglifyJS2/issues/2011
-    //     comparisons: false,
-    //   },
-    //   output: {
-    //     comments: false,
-    //     // Turned on because emoji and regex is not minified properly using default
-    //     // https://github.com/facebookincubator/create-react-app/issues/2488
-    //     ascii_only: true,
-    //   },
-    //   sourceMap: false,
-    // }),
-    // Note: this won't work without ExtractTextPlugin.extract(..) in `loaders`.
     new ExtractTextPlugin({
       filename: cssFilename,
     }),
+    // new BundleAnalyzerPlugin(),
     // Generate a manifest file which contains a mapping of all asset filenames
     // to their corresponding output file so that tools can pick it up without
     // having to parse `index.html`.
     new ManifestPlugin({
       fileName: 'asset-manifest.json',
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      names: Object.keys(blogs) // 指定一个希望作为公共包的入口
-    }),
+
+
+
     // Generate a service worker script that will precache, and keep up to date,
     // the HTML & assets that are part of the Webpack build.
     new SWPrecacheWebpackPlugin({
