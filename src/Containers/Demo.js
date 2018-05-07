@@ -27,9 +27,19 @@ export default class extends Component {
             console.log('p1 rejected', err);
         });
     }
+    // componentWillReceiveProps(p1,p2){
+    //     console.log('willreceieve',p1,p2);
+    //     this.setState({tttt2:'asdasd'});
+    // }
+    shouldComponentUpdate(nextProps,nextState){
+        console.log('thisState',this.state)
+        console.log('nextState',nextState)
+        return true;
+    }
     render() {
         return (
             <div>
+                <button onClick = {()=>{this.setState({test:'aaa'})}}>test update</button>
                 <button onClick={() => {
                     let items = this.state.items;
                     items.unshift({

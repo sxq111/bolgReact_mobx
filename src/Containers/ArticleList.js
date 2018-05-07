@@ -18,6 +18,7 @@ export default class extends Component {
         }
     }
     componentWillReceiveProps(p1, p2) {
+        console.log('al asdadsasd')
         if (p1.tag) {
             this.getArticles(p1);
         }
