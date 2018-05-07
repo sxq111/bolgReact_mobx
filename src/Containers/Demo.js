@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component,PureComponent } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ReactTransitionGroup from 'react-addons-transition-group'
 import './Anim.umcss';
 // import { Button } from 'antd/lib/radio';
+const cryptoJs = require('crypto-js');
 
 export default class extends Component {
     state = {
@@ -36,7 +37,9 @@ export default class extends Component {
         console.log('nextState',nextState)
         return true;
     }
+    goodProp(){}
     render() {
+        console.log('crypto',cryptoJs.AES.encrypt('sxq111', '123456789').toString(),cryptoJs.AES.encrypt('sxq111', '123456789'),cryptoJs.enc)
         return (
             <div>
                 <button onClick = {()=>{this.setState({test:'aaa'})}}>test update</button>
@@ -93,7 +96,7 @@ export default class extends Component {
                         })
                     }
                 </AnimAddList>
-
+                <JustChild prop = {this.goodProp}/>
             </div>
         )
     }
@@ -153,5 +156,12 @@ class AnimLi extends Component {
                 {this.props.children}
             </div>
         )
+    }
+}
+class JustChild extends PureComponent{
+
+    render(){
+        console.log('child render');
+        return(<span>child</span>)
     }
 }
