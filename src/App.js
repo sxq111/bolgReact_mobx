@@ -41,8 +41,8 @@ class App extends Component {
 		})
 	}
 	render() {
-		console.log(App.prototype)
 		const { store } = this.props;
+		console.log(this.props.store);
 		return (
 			<BrowserRouter>
 				<div className={stylesLess.body}>
