@@ -13,6 +13,7 @@ import Demo from './Containers/Demo';
 
 @observer
 class App extends Component {
+	state = {val:0}
 	constructor(props) {
 		super(props);
 	}
@@ -23,7 +24,17 @@ class App extends Component {
 
 	}
 	@testDesc('原型方法')
-	async  componentDidMount() {
+	componentDidMount() {
+		this.setState({val:this.state.val+1});
+		console.log(this.state.val);//0
+		this.setState({val:this.state.val+1});
+		console.log(this.state.val);//0
+		setTimeout(()=>{
+			this.setState({val:this.state.val+1});
+			console.log(this.state.val);//2
+			this.setState({val:this.state.val+1});
+			console.log(this.state.val);
+		},0);
 	}
 	@SimpleAutoBind
 	changeTag(tag) {
