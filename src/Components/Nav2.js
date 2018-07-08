@@ -7,7 +7,7 @@ import styles from './nav.css';
 export default class extends Component {
     clkNode(tag){
         this.props.onChangeTag(tag);
-        this.props.history.push('/');
+        this.props.history.push('/articleList');
     }
     render() {
         return(

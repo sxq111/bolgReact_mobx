@@ -5,14 +5,15 @@ export default function Badage({ title, style = {} }) {
         <div
             className = {styles.badge}
             style={{        
-                color:'rgb(153, 153, 153)',   
-                ...style, 
-                display: 'inline-block',
                 width: '1.55em',
                 height: '1.55em',
                 // border: '1px solid grey',
                 lineHeight:'1.55em',
-                borderRadius: 99999,
+                color:'rgb(153, 153, 153)',   
+                display: 'inline-block',
+                ...style, 
+
+                borderRadius: '50%',
                 textAlign:'center',
             }}>
             {title}

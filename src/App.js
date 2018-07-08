@@ -7,7 +7,7 @@ import Nav2M from './Components/Nav2mobile';
 import Article from './Containers/Article';
 import ArticleList from './Containers/ArticleList';
 import { observer } from 'mobx-react';
-import Timeline from './Containers/TimeLine';
+import About from './Containers/About';
 import { SimpleAutoBind, waitingForDecorator, testDesc } from 'SRC/simpleAutoBind';
 import Demo from './Containers/Demo';
 
@@ -80,11 +80,12 @@ class App extends Component {
 							{/* 文章显示区 */}
 							<Route path='/:tag/:name' component={Article} />
 							<Route path='/demo' component={Demo} />
-							<Route path='/'
+							<Route path='/articleList'
 								render={(props) => {
 									return (<ArticleList fileMap={this.props.store.FileMap} tag={this.props.store.currentTag} />)
 								}}
 							/>
+							<Route path='/' component = {About}  />
 						</Switch>
 					</div>
 				</div>
