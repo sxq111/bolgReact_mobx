@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import IMG from '../LazyImg';
 @withRouter
 export default class extends Component {
 
@@ -24,7 +25,7 @@ export default class extends Component {
             theImg = newsrc;
         }
         return (
-            <img alt = '暂无图片' src = {theImg} style = {{display:'block',margin:'0 auto',maxWidth:'100%'}} />
+            <IMG alt = '暂无图片' src = {theImg} style = {{display:'block',margin:'0 auto',maxWidth:'100%'}} />
         )
     }
 }

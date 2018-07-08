@@ -4,6 +4,7 @@ import Tag from '../Components/Tag';
 import Card from '../Components/Card';
 import styles from './ArticleList.css';
 import { Link } from 'react-router-dom';
+import IMG from '../Components/LazyImg';
 
 export default class extends Component {
     constructor(props) {
@@ -51,7 +52,7 @@ export default class extends Component {
                                 style={{float: 'left'}}
                             >
                                 <div style={{ width: '100%', height: 150 ,borderRadius:10,overflow:'hidden'}}>
-                                    <img style={{ height: '100%', width: '100%' }} alt="暂无图片" src={data.overviewPic} />
+                                    <IMG style={{ height: '100%', width: '100%' }} src={data.overviewPic} />
                                 </div>
                                 <Tag style = {{marginTop:10,marginBottom:10}}>{'发布时间：' + data.basicInfo.menTime}</Tag>
                                 <br/>
